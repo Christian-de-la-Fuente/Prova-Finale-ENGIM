@@ -13,7 +13,7 @@ public class TariffaRepository {
         List<Tariffa> tariffe = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM preventivo");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tariffa_corriere");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
 

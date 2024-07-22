@@ -13,7 +13,7 @@ public class ArticoloRepository {
         List<Articolo> articoli = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement stmt = conn.prepareStatement("SELECT id, codice, descrizione, peso FROM fermata");
+            PreparedStatement stmt = conn.prepareStatement("SELECT id, codice, descrizione, peso FROM articolo");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
 

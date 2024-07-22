@@ -10,17 +10,20 @@ import java.util.List;
 import static org.ptode_la_fuente.constants.DBConfig.*;
 
 public class OrdineRepository {
-    public static List<Ordine> getLinee(){
+    public static List<Ordine> getOrdini(){
         List<Articolo> articoli = ArticoloRepository.getArticoli();
         List<Ordine> ordini = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement stmt = conn.prepareStatement("SELECT id, nome FROM linea");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ordine");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
 
                 // creo una fermata con i dati del DB
-                Ordine ordine = new Ordine(rs.getInt("id"),rs.getString("nome"));
+                Ordine ordine = new Ordine(
+                        rs.getInt("id"),
+                        rs.getInt("numero"),
+                        rs.getDate("data").toLocalDate());
                 // aggiungo alla lista
                 ordini.add(ordine);
             }
@@ -31,10 +34,10 @@ public class OrdineRepository {
 
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement stmt = conn.prepareStatement("select id, id_fermata, id_linea from fermata_linea");
+            PreparedStatement stmt = conn.prepareStatement("select id, ordine_id, articolo_id from voce");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                aggiungiFermata(rs.getInt("id_ordine"),rs.getInt("id_articolo"), articoli, ordini);
+                aggiungiArticolo(rs.getInt("id_ordine"),rs.getInt("id_articolo"), articoli, ordini);
 
             }
 
@@ -45,14 +48,14 @@ public class OrdineRepository {
         return ordini;
     }
 
-    private static void aggiungiFermata(int articoloId, int ordineId, List<Articolo> articoli, List<Ordine> ordini) {
+    private static void aggiungiArticolo(int articoloId, int ordineId, List<Articolo> articoli, List<Ordine> ordini) {
         Articolo articolo = null;
         for (Articolo a : articoli){
             if(a.getId() == articoloId)
                 articolo = a;
         }
 
-        Ordine ordine = ordini.stream().filter(l->l.getId() == ordineId).toList().get(0);
+        Ordine ordine = ordini.stream().filter(o->o.getId() == ordineId).toList().get(0);
         ordine.getArticoli().add(articolo);
     }
 }
