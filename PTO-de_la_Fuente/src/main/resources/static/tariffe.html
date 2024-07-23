@@ -4,14 +4,82 @@
     <meta charset="UTF-8">
     <title>Tariffe</title>
     <style>
-        #tariffe{
+        body {
+            background-image: url('immaginiSfondo/pink-floyd-prism-album-covers-cover-art-wallpaper-b950887da1baed5b8667e8bf40d1065d.jpg'); /* Sostituisci con il percorso della tua immagine */
+            background-size: cover; /* Rende l'immagine di sfondo coprente */
+            background-position: center; /* Centra l'immagine di sfondo */
+            background-repeat: no-repeat; /* Non ripete l'immagine */
+            color: white; /* Cambia il colore del testo per migliorare la leggibilità */
+        }
+        #tariffe {
+            border-collapse: collapse; /* Unisce i bordi delle celle */
+            width: 100%; /* Opzionale: imposta la larghezza della tabella */
+            background-color: white;
+            color: black;
+        }
+
+        #tariffe, #tariffe td, #tariffe th {
+            border: 1px solid black; /* Bordo per la tabella e le celle */
+        }
+
+        #tariffe td, #tariffe th {
+            padding: 8px; /* Spaziatura interna per le celle */
+            text-align: left; /* Allineamento del testo a sinistra */
+        }
+
+        #tariffe th {
+            background-color: #f2f2f2; /* Colore di sfondo per le intestazioni */
+        }
+
+        h1 {
+            text-align: center; /* Centra il titolo */
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra orizzontalmente */
+            margin-top: 20px; /* Aggiungi un margine superiore */
             border: 1px solid black;
+        }
+
+        .form input,
+        .form button {
+            margin-bottom: 10px; /* Aggiungi uno spazio tra gli elementi del form */
         }
     </style>
 </head>
 <body>
 <h1>Tariffe</h1>
-<table id="tariffe"></table>
+<table id="tariffe">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome Corriere</th>
+        <th>Nome Tariffa</th>
+        <th>Peso Massimo</th>
+        <th>Costo</th>
+        <th>Operazioni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- I dati verranno aggiunti qui tramite JavaScript -->
+    </tbody>
+</table>
+
+<div class="form">
+    <label>Nome Corriere:</label>
+    <input type="text" id="inputNomeCorriere"/>
+    <label>Nome Tariffa:</label>
+    <input type="text" id="inputNomeTariffa"/>
+    <label>Peso Massimo:</label>
+    <input type="number" id="inputPesoMassimo"/>
+    <label>Costo:</label>
+    <input type="number" id="inputCosto"/>
+
+    <button onclick="aggiungi()">Aggiungi</button>
+</div>
+
 <script src="js/tariffe.js"></script>
 </body>
 </html>

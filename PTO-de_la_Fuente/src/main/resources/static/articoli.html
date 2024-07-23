@@ -4,14 +4,54 @@
     <meta charset="UTF-8">
     <title>Articoli</title>
     <style>
-        #articoli{
-            border: 1px solid black;
+        body {
+            background-image: url('immaginiSfondo/1342159520_2e112bab62_b.jpg'); /* Sostituisci con il percorso della tua immagine */
+            background-size: cover; /* Rende l'immagine di sfondo coprente */
+            background-position: center; /* Centra l'immagine di sfondo */
+            background-repeat: no-repeat; /* Non ripete l'immagine */
+            color: white; /* Cambia il colore del testo per migliorare la leggibilità */
+        }
+
+        #articoli {
+            border-collapse: collapse; /* Unisce i bordi delle celle */
+            width: 100%; /* Opzionale: imposta la larghezza della tabella */
+            background-color: white;
+            color: black;
+        }
+
+        #articoli, #articoli td, #articoli th {
+            border: 1px solid black; /* Bordo per la tabella e le celle */
+        }
+
+        #articoli td, #articoli th {
+            padding: 8px; /* Spaziatura interna per le celle */
+            text-align: left; /* Allineamento del testo a sinistra */
+        }
+
+        #articoli th {
+            background-color: #f2f2f2; /* Colore di sfondo per le intestazioni */
+        }
+
+        h1 {
+            text-align: center; /* Centra il titolo */
         }
     </style>
 </head>
 <body>
 <h1>Articoli</h1>
-<table id="articoli"></table>
+<table id="articoli">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Codice</th>
+        <th>Descrizione</th>
+        <th>Peso</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- I dati verranno aggiunti qui tramite JavaScript -->
+    </tbody>
+</table>
 <script src="js/articoli.js"></script>
 </body>
 </html>

@@ -37,7 +37,7 @@ public class OrdineRepository {
             PreparedStatement stmt = conn.prepareStatement("select id, ordine_id, articolo_id from voce");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                aggiungiArticolo(rs.getInt("id_ordine"),rs.getInt("id_articolo"), articoli, ordini);
+                aggiungiArticolo(rs.getInt("ordine_id"),rs.getInt("articolo_id"), articoli, ordini);
 
             }
 
@@ -48,14 +48,27 @@ public class OrdineRepository {
         return ordini;
     }
 
-    private static void aggiungiArticolo(int articoloId, int ordineId, List<Articolo> articoli, List<Ordine> ordini) {
-        Articolo articolo = null;
-        for (Articolo a : articoli){
-            if(a.getId() == articoloId)
-                articolo = a;
-        }
+    private static void aggiungiArticolo(int ordineId, int articoloId, List<Articolo> articoli, List<Ordine> ordini) {
+        Articolo articolo = articoli.stream()
+                .filter(a -> a.getId() == articoloId)
+                .findFirst()
+                .orElse(null);
 
-        Ordine ordine = ordini.stream().filter(o->o.getId() == ordineId).toList().get(0);
-        ordine.getArticoli().add(articolo);
+        if (articolo != null) {
+            Ordine ordine = ordini.stream()
+                    .filter(o -> o.getId() == ordineId)
+                    .findFirst()
+                    .orElse(null);
+
+            if (ordine != null) {
+                ordine.getArticoli().add(articolo);
+            }
+        }
+    }
+
+    public static double calcolaPesoTotale(Ordine ordine) {
+        return ordine.getArticoli().stream()
+                .mapToDouble(Articolo::getPeso)
+                .sum();
     }
 }

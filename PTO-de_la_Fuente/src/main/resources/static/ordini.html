@@ -4,14 +4,53 @@
     <meta charset="UTF-8">
     <title>Ordini</title>
     <style>
-        #ordini{
-            border: 1px solid black;
+        body {
+            background-image: url('immaginiSfondo/wintersun-the-forest-seasons-nature-hd-wallpaper-preview.jpg'); /* Sostituisci con il percorso della tua immagine */
+            background-size: cover; /* Rende l'immagine di sfondo coprente */
+            background-position: center; /* Centra l'immagine di sfondo */
+            background-repeat: no-repeat; /* Non ripete l'immagine */
+            color: white; /* Cambia il colore del testo per migliorare la leggibilità */
+        }
+        #ordini {
+            border-collapse: collapse; /* Unisce i bordi delle celle */
+            width: 100%; /* Opzionale: imposta la larghezza della tabella */
+            background-color: white;
+            color: black;
+        }
+
+        #ordini, #ordini td, #ordini th {
+            border: 1px solid black; /* Bordo per la tabella e le celle */
+        }
+
+        #ordini td, #ordini th {
+            padding: 8px; /* Spaziatura interna per le celle */
+            text-align: left; /* Allineamento del testo a sinistra */
+        }
+
+        #ordini th {
+            background-color: #f2f2f2; /* Colore di sfondo per le intestazioni */
+        }
+
+        h1 {
+            text-align: center; /* Centra il titolo */
         }
     </style>
 </head>
 <body>
 <h1>Ordini</h1>
-<table id="ordini"></table>
+<table id="ordini">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Numero</th>
+        <th>Data</th>
+        <th>Costo (Corriere, Tariffa)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- I dati verranno aggiunti qui tramite JavaScript -->
+    </tbody>
+</table>
 <script src="js/ordini.js"></script>
 </body>
 </html>

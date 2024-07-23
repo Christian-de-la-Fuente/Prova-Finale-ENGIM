@@ -14,7 +14,7 @@ fetch(url)
                     `${articolo.id}`,
                     `${articolo.codice}`,
                     `${articolo.descrizione}`,
-                    `${articolo.descrizione}`);
+                    `${articolo.peso}`);
             });
     })
     .catch(function(error) {
